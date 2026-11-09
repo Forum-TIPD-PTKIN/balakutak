@@ -143,6 +143,15 @@ return [
                 ['text' => 'Sponsor', 'url' => 'admin/sponsors', 'icon' => 'fas fa-hand-holding-heart'],
             ],
         ],
+                [
+            'text' => 'Litapdimas Kemenag',
+            'icon' => 'fas fa-graduation-cap text-success',
+            'submenu' => [
+                ['text' => 'Pengaturan API (idreq/keyreq)', 'url' => 'admin/litapdimas/settings', 'icon' => 'fas fa-key'],
+                ['text' => 'Data Penelitian Publik', 'url' => 'admin/research-services', 'icon' => 'fas fa-microscope'],
+            ],
+        ],
+
         ['text' => 'Panduan Sistem', 'url' => 'admin/guide', 'icon' => 'fas fa-book-open', 'active' => ['admin/guide*']],
     ],
 

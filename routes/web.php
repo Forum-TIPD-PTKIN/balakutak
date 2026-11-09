@@ -40,6 +40,14 @@ use App\Http\Controllers\Admin\FaqController;
 
 /* |-------------------------------------------------------------------------- | Admin Panel Routes (Protected) |-------------------------------------------------------------------------- */
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified', \App\Http\Middleware\AdminLocale::class])->group(function () {
+        // Litapdimas Integration Module
+        Route::prefix("litapdimas")->name("litapdimas.")->group(function () {
+            Route::get("settings", [\App\Modules\Litapdimas\Http\Controllers\LitapdimasSettingController::class, "index"])->name("settings");
+            Route::post("settings", [\App\Modules\Litapdimas\Http\Controllers\LitapdimasSettingController::class, "update"])->name("settings.update");
+            Route::get("test-connection", [\App\Modules\Litapdimas\Http\Controllers\LitapdimasSettingController::class, "testConnection"])->name("test-connection");
+            Route::get("sync-references", [\App\Modules\Litapdimas\Http\Controllers\LitapdimasSettingController::class, "syncReferences"])->name("sync-references");
+            Route::get("sync-researchers", [\App\Modules\Litapdimas\Http\Controllers\LitapdimasSettingController::class, "syncResearchers"])->name("sync-researchers");
+        });
 
     Route::get('/', [DashboardController::class , 'index'])->name('dashboard');
     Route::get('/stats', [DashboardController::class , 'stats'])->name('stats');
