@@ -145,7 +145,7 @@ return [
         ],
                 [
             'text' => 'Litapdimas Kemenag',
-            'icon' => 'fas fa-graduation-cap text-success',
+            'icon' => 'fas fa-graduation-cap',
             'submenu' => [
                 ['text' => 'Pengaturan API (idreq/keyreq)', 'url' => 'admin/litapdimas/settings', 'icon' => 'fas fa-key'],
                 ['text' => 'Data Penelitian Publik', 'url' => 'admin/research-services', 'icon' => 'fas fa-microscope'],
