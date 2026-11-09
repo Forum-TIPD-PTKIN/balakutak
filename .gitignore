@@ -40,4 +40,6 @@ tmp_create.txt
 
 # Local docker data
 db-data/
+demo-storage-pristine.tar.gz
+
 
