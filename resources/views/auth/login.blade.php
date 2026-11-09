@@ -17,7 +17,7 @@
     <style>
         * { box-sizing: border-box; }
         body, html { 
-            margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden;
+            margin: 0; padding: 0; height: 100%; width: 100%; min-height: 100%;
             font-family: 'Outfit', sans-serif;
         }
         /* Hide Google Translate top bar/arrow */
@@ -38,12 +38,12 @@
         }
     </style>
 </head>
-<body class="flex items-center justify-center p-4 antialiased">
+<body class="flex items-center justify-center p-4 antialiased min-h-screen py-10 overflow-y-auto">
     
     <div class="relative z-20 w-full flex flex-col items-center justify-center py-8" style="max-width: 800px; margin: 0 auto;">
         {{-- Professional Login Card --}}
         <div class="w-full flex shadow-[0_30px_100px_rgba(0,0,0,0.5)] bg-white min-h-[620px] border border-white/20" 
-             style="border-radius: 48px; overflow: hidden;">
+             style="border-radius: 48px; min-height: 100%;">
         
             <!-- Left Side - Branding -->
             <div class="hidden md:flex md:w-1/2 bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 text-white flex-col justify-center p-10 relative overflow-hidden">
@@ -87,6 +87,62 @@
 
                     <!-- Session Status -->
                     <x-auth-session-status class="mb-6" :status="session('status')" />
+
+                    <!-- Kartu Akun Demo (Demo Accounts Quick Access) -->
+                    <div class="mb-5 p-3 rounded-2xl bg-gradient-to-br from-indigo-50/80 via-purple-50/40 to-slate-50 border border-indigo-100 shadow-sm">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-600 text-white text-[10px] font-black shadow-sm">
+                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </span>
+                            <span class="text-xs font-black uppercase tracking-wider text-indigo-950">Akses Cepat Akun Demo</span>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                            <!-- Super Admin Card -->
+                            <div onclick="fillDemo('superadmin@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
+                                <div class="flex items-center gap-1.5 mb-0.5">
+                                    <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
+                                    <span class="font-bold text-slate-800 text-[11px]">Super Admin</span>
+                                </div>
+                                <div class="text-[10px] text-slate-500 font-mono truncate">
+                                    superadmin@prodi.ac.id
+                                </div>
+                            </div>
+
+                            <!-- Admin Prodi Card -->
+                            <div onclick="fillDemo('admin@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
+                                <div class="flex items-center gap-1.5 mb-0.5">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                    <span class="font-bold text-slate-800 text-[11px]">Admin Prodi</span>
+                                </div>
+                                <div class="text-[10px] text-slate-500 font-mono truncate">
+                                    admin@prodi.ac.id
+                                </div>
+                            </div>
+
+                            <!-- Editor Konten Card -->
+                            <div onclick="fillDemo('editor@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
+                                <div class="flex items-center gap-1.5 mb-0.5">
+                                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                                    <span class="font-bold text-slate-800 text-[11px]">Editor Konten</span>
+                                </div>
+                                <div class="text-[10px] text-slate-500 font-mono truncate">
+                                    editor@prodi.ac.id
+                                </div>
+                            </div>
+
+                            <!-- Dosen Pengajar Card -->
+                            <div onclick="fillDemo('dosen@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
+                                <div class="flex items-center gap-1.5 mb-0.5">
+                                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                                    <span class="font-bold text-slate-800 text-[11px]">Dosen</span>
+                                </div>
+                                <div class="text-[10px] text-slate-500 font-mono truncate">
+                                    dosen@prodi.ac.id
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <form method="POST" action="{{ route('login') }}" class="space-y-4">
                         @csrf
@@ -173,6 +229,23 @@
     </div>
 
     <script>
+        function fillDemo(email, password) {
+            const emailInput = document.getElementById('email');
+            const passInput = document.getElementById('password');
+            if (emailInput && passInput) {
+                emailInput.value = email;
+                passInput.value = password;
+                emailInput.focus();
+                // Visual feedback
+                emailInput.classList.add('ring-2', 'ring-indigo-500', 'bg-indigo-50/50');
+                passInput.classList.add('ring-2', 'ring-indigo-500', 'bg-indigo-50/50');
+                setTimeout(() => {
+                    emailInput.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50/50');
+                    passInput.classList.remove('ring-2', 'ring-indigo-500', 'bg-indigo-50/50');
+                }, 1000);
+            }
+        }
+
         function refreshCaptcha() {
             const img = document.getElementById('captcha-img');
             img.src = "{{ route('captcha.generate') }}?id=" + Math.random();

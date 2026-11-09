@@ -37,3 +37,7 @@ tmp_create.txt
 *.php.bak
 *.php~
 /scratch/
+
+# Local docker data
+db-data/
+

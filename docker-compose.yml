@@ -1,0 +1,51 @@
+services:
+  cms_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cms_app
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8094}:80"
+    env_file:
+      - .env
+    environment:
+      - DB_HOST=cms_db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE:-balakutak_cms}
+      - DB_USERNAME=${DB_USERNAME:-cms_user}
+      - DB_PASSWORD=${DB_PASSWORD:-cms_password_secure_2026}
+    volumes:
+      - /home/apps/app-cms/storage:/var/www/html/storage
+      - /home/apps/app-cms/.env:/var/www/html/.env
+      - /home/apps/app-cms/resources/views:/var/www/html/resources/views
+    depends_on:
+      cms_db:
+        condition: service_healthy
+    networks:
+      - cms_network
+
+  cms_db:
+    image: mariadb:11.4
+    container_name: cms_db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-cms_root_pass_2026}
+      MARIADB_DATABASE: ${DB_DATABASE:-balakutak_cms}
+      MARIADB_USER: ${DB_USERNAME:-cms_user}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-cms_password_secure_2026}
+    volumes:
+      - /home/apps/app-cms/db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mariadb-admin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${DB_ROOT_PASSWORD:-cms_root_pass_2026}"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+      start_period: 15s
+    networks:
+      - cms_network
+
+networks:
+  cms_network:
+    name: cms_network
+    driver: bridge
