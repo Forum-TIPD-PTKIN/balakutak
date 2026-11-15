@@ -141,6 +141,7 @@ return [
                 ['text' => 'Akademik', 'url' => 'admin/settings/academic', 'icon' => 'fas fa-graduation-cap'],
                 ['text' => 'Info Grafis', 'url' => 'admin/infographics', 'icon' => 'fas fa-chart-pie'],
                 ['text' => 'Sponsor', 'url' => 'admin/sponsors', 'icon' => 'fas fa-hand-holding-heart'],
+                ['text' => 'Demo Manager', 'url' => 'admin/demo-manager', 'icon' => 'fas fa-magic', 'active' => ['admin/demo-manager*']],
             ],
         ],
                 [

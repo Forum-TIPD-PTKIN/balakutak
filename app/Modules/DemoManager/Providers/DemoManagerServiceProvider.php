@@ -5,6 +5,7 @@ namespace App\Modules\DemoManager\Providers;
 use App\Modules\DemoManager\Console\Commands\DemoResetCommand;
 use App\Modules\DemoManager\Services\DemoResetService;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class DemoManagerServiceProvider extends ServiceProvider
@@ -30,7 +31,11 @@ class DemoManagerServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../Views', 'demo');
 
-        // Daftarkan blade directive / component @include('demo::components.quick-login')
+        // Daftarkan route admin modul
+        Route::middleware('web')
+            ->group(__DIR__ . '/../Routes/web.php');
+
+        // Daftarkan blade directive / component
         Blade::component('demo::components.quick-login', 'demo-quick-login');
     }
 }
