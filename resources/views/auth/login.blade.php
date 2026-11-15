@@ -88,61 +88,7 @@
                     <!-- Session Status -->
                     <x-auth-session-status class="mb-6" :status="session('status')" />
 
-                    <!-- Kartu Akun Demo (Demo Accounts Quick Access) -->
-                    <div class="mb-5 p-3 rounded-2xl bg-gradient-to-br from-indigo-50/80 via-purple-50/40 to-slate-50 border border-indigo-100 shadow-sm">
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-600 text-white text-[10px] font-black shadow-sm">
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                            </span>
-                            <span class="text-xs font-black uppercase tracking-wider text-indigo-950">Akses Cepat Akun Demo</span>
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                            <!-- Super Admin Card -->
-                            <div onclick="fillDemo('superadmin@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
-                                <div class="flex items-center gap-1.5 mb-0.5">
-                                    <span class="w-2 h-2 rounded-full bg-indigo-600"></span>
-                                    <span class="font-bold text-slate-800 text-[11px]">Super Admin</span>
-                                </div>
-                                <div class="text-[10px] text-slate-500 font-mono truncate">
-                                    superadmin@prodi.ac.id
-                                </div>
-                            </div>
-
-                            <!-- Admin Prodi Card -->
-                            <div onclick="fillDemo('admin@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
-                                <div class="flex items-center gap-1.5 mb-0.5">
-                                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                    <span class="font-bold text-slate-800 text-[11px]">Admin Prodi</span>
-                                </div>
-                                <div class="text-[10px] text-slate-500 font-mono truncate">
-                                    admin@prodi.ac.id
-                                </div>
-                            </div>
-
-                            <!-- Editor Konten Card -->
-                            <div onclick="fillDemo('editor@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
-                                <div class="flex items-center gap-1.5 mb-0.5">
-                                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                                    <span class="font-bold text-slate-800 text-[11px]">Editor Konten</span>
-                                </div>
-                                <div class="text-[10px] text-slate-500 font-mono truncate">
-                                    editor@prodi.ac.id
-                                </div>
-                            </div>
-
-                            <!-- Dosen Pengajar Card -->
-                            <div onclick="fillDemo('dosen@prodi.ac.id', 'password')" class="p-2.5 rounded-xl bg-white border border-indigo-100 hover:border-indigo-500 hover:shadow-md cursor-pointer transition-all duration-200 active:scale-[0.98]">
-                                <div class="flex items-center gap-1.5 mb-0.5">
-                                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
-                                    <span class="font-bold text-slate-800 text-[11px]">Dosen</span>
-                                </div>
-                                <div class="text-[10px] text-slate-500 font-mono truncate">
-                                    dosen@prodi.ac.id
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('demo::components.quick-login')
 
                     <form method="POST" action="{{ route('login') }}" class="space-y-4">
                         @csrf

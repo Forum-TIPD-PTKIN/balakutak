@@ -19,6 +19,13 @@ services:
       - /home/apps/app-cms/storage:/var/www/html/storage
       - /home/apps/app-cms/.env:/var/www/html/.env
       - /home/apps/app-cms/resources/views:/var/www/html/resources/views
+      - /home/apps/app-cms/app:/var/www/html/app
+      - /home/apps/app-cms/bootstrap/providers.php:/var/www/html/bootstrap/providers.php
+      - /home/apps/app-cms/routes:/var/www/html/routes
+      - /home/apps/app-cms/config:/var/www/html/config
+      - /home/apps/app-cms/scripts:/var/www/html/scripts
+      - /home/apps/app-cms/demo-pristine.sql:/var/www/html/demo-pristine.sql
+      - /home/apps/app-cms/demo-storage-pristine.tar.gz:/var/www/html/demo-storage-pristine.tar.gz
     depends_on:
       cms_db:
         condition: service_healthy
